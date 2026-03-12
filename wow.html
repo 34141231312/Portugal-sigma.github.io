@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About:Blank Launcher</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+    <h2>About:Blank Link Launcher</h2>
+    
+    <!-- Text box to input the URL -->
+    <input type="text" id="urlInput" placeholder="https://example.com" style="width: 300px; padding: 10px;">
+    
+    <!-- Button to trigger the script -->
+    <button onclick="launchSite()" style="padding: 10px 20px;">Open in Blank</button>
+
+    <script>
+        function launchSite() {
+            // Get the URL from the input box
+            var url = document.getElementById('urlInput').value;
+            
+            // Validate that the URL starts with http/https
+            if (!url.startsWith('http')) {
+                url = 'https://' + url;
+            }
+            
+            // Open about:blank
+            var win = window.open('about:blank', '_blank');
+            
+            // Inject an iframe into the new tab to display the site
+            win.document.body.style.margin = '0';
+            win.document.body.innerHTML = '<iframe src="' + url + '" style="width: 100vw; height: 100vh; border: none;"></iframe>';
+        }
+    </script>
+</body>
+</html>
